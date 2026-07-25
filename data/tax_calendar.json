@@ -1,0 +1,242 @@
+{
+  "schema_version": 2,
+  "generated_at": "2026-07-25",
+  "source_note": "국세청 세무일정·위택스(wetax.go.kr) 지방세일정 1차 대조. 일정은 연도 비종속 규칙(month/day)이며, 앱이 오늘 기준 다음 도래일로 해석하고 발생연도 공휴일로 순연을 자동 해소한다.",
+  "biz_types": [
+    { "key": "simple",     "label": "간이과세자" },
+    { "key": "general",    "label": "일반과세자" },
+    { "key": "corp",       "label": "법인" },
+    { "key": "freelancer", "label": "프리랜서(인적용역 3.3%)" },
+    { "key": "tax_free",   "label": "면세사업자" }
+  ],
+  "opt_in_flags": [
+    { "key": "realty_owner", "label": "사업장 건물 자가 소유" },
+    { "key": "licensed_biz", "label": "인허가(면허) 업종" }
+  ],
+  "events": [
+    {
+      "id": "vat_1st_final",
+      "title": "부가가치세 1기 확정신고·납부",
+      "category": "부가세",
+      "rule": "fixed", "month": 7, "day": 25,
+      "types": ["general", "corp"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7691",
+      "desc": "1월~6월 실적에 대한 부가세 확정신고. 일반과세자·법인 대상. 기한이 주말·공휴일이면 다음 영업일로 순연됩니다.",
+      "checklist": [
+        "매출·매입 세금계산서 집계",
+        "신용카드·현금영수증 매출 확인",
+        "전자세금계산서 발행 누락분 점검",
+        "공제 가능 매입세액(사업 관련 지출) 정리"
+      ],
+      "local_tax": null
+    },
+    {
+      "id": "vat_2nd_final",
+      "title": "부가가치세 2기 확정신고·납부",
+      "category": "부가세",
+      "rule": "fixed", "month": 1, "day": 25,
+      "types": ["general", "corp", "simple"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7691",
+      "desc": "전년도 7월~12월 실적에 대한 부가세 확정신고. 간이과세자는 연 1회 이 시기에만 신고(전년도 전체 실적).",
+      "checklist": [
+        "하반기 매출·매입 세금계산서 집계",
+        "간이과세자: 연간 공급대가 합계 확인(부가세 면제 기준 점검)",
+        "신용카드·현금영수증 매출 확인"
+      ],
+      "local_tax": null
+    },
+    {
+      "id": "vat_1st_pre",
+      "title": "부가가치세 예정신고(1기)",
+      "category": "부가세",
+      "rule": "fixed", "month": 4, "day": 25,
+      "types": ["general", "corp"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7691",
+      "desc": "법인은 예정신고, 개인 일반과세자는 직전기 세액의 1/2 예정고지 납부(별도 신고 없이 고지서로 납부).",
+      "checklist": ["법인: 1~3월 실적 신고 준비", "개인: 예정고지서 확인 후 납부"],
+      "local_tax": null
+    },
+    {
+      "id": "vat_2nd_pre",
+      "title": "부가가치세 예정신고(2기)",
+      "category": "부가세",
+      "rule": "fixed", "month": 10, "day": 25,
+      "types": ["general", "corp"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7691",
+      "desc": "법인은 예정신고, 개인 일반과세자는 예정고지 납부(7~9월분).",
+      "checklist": ["법인: 7~9월 실적 신고 준비", "개인: 예정고지서 확인 후 납부"],
+      "local_tax": null
+    },
+    {
+      "id": "global_income",
+      "title": "종합소득세 신고·납부",
+      "category": "종합소득세",
+      "rule": "fixed", "month": 5, "day": 31,
+      "types": ["general", "simple", "freelancer", "tax_free"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7664&mi=2224",
+      "desc": "전년도 종합소득에 대한 신고. 개인사업자·프리랜서 전체 대상. 성실신고확인대상자는 6/30까지. 홈택스 신고 시 개인지방소득세(세액의 10%)가 위택스로 연계 신고됩니다.",
+      "checklist": [
+        "전년도 매출·경비 장부 정리",
+        "프리랜서: 3.3% 원천징수 지급명세서(수입금액) 확인",
+        "공제·감면 항목(노란우산·연금 등) 점검",
+        "개인지방소득세(종합소득세의 10%)도 함께 신고·납부"
+      ],
+      "local_tax": {
+        "title": "개인지방소득세(종합소득분)",
+        "rule": "fixed", "month": 5, "day": 31,
+        "note": "종합소득세액의 10%. 홈택스→위택스 연계신고. 1백만원 초과 시 2개월 분할납부 가능.",
+        "official_url": "https://www.wetax.go.kr/tcp/loi/J030104M01.do"
+      }
+    },
+    {
+      "id": "biz_status_report",
+      "title": "사업장현황신고",
+      "category": "면세",
+      "rule": "fixed", "month": 2, "day": 10,
+      "types": ["tax_free"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7697",
+      "desc": "면세사업자(부가세 면세)가 전년도 수입금액·시설현황을 신고. 병·의원, 학원, 농·축·수산물 등.",
+      "checklist": ["전년도 수입금액 집계", "매입처별 계산서 합계표 준비"],
+      "local_tax": null
+    },
+    {
+      "id": "corp_tax",
+      "title": "법인세 신고·납부",
+      "category": "법인세",
+      "rule": "fixed", "month": 3, "day": 31,
+      "types": ["corp"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7699",
+      "desc": "12월 결산법인 기준 사업연도 종료 후 3개월 이내. 결산월이 다르면 그에 맞춰 조정.",
+      "checklist": ["재무제표 확정", "세무조정 계산서 준비", "법인지방소득세(4월 별도 신고) 확인"],
+      "local_tax": null
+    },
+    {
+      "id": "corp_tax_interim",
+      "title": "법인세 중간예납",
+      "category": "법인세",
+      "rule": "fixed", "month": 8, "day": 31,
+      "types": ["corp"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7699",
+      "desc": "12월 결산법인의 상반기 중간예납. 직전연도 산출세액 기준 또는 가결산.",
+      "checklist": ["직전연도 세액 확인", "가결산 필요 여부 판단"],
+      "local_tax": null
+    },
+    {
+      "id": "withholding_tax",
+      "title": "원천세 신고·납부",
+      "category": "원천세",
+      "rule": "monthly", "day": 10,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": true, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7694",
+      "desc": "직원 급여·사업소득·기타소득 지급 시 원천징수한 세금을 다음 달 10일까지 신고·납부. 반기납부 승인 사업자는 1월·7월(1/10·7/10)에만. 지방소득세 특별징수(원천세의 10%)도 함께 납부.",
+      "checklist": [
+        "전월 급여·용역비 지급내역 정리",
+        "원천징수이행상황신고서 작성",
+        "지방소득세 특별징수분(10%) 함께 납부"
+      ],
+      "local_tax": {
+        "title": "지방소득세 특별징수분",
+        "rule": "monthly", "day": 10,
+        "note": "원천징수세액의 10%. 원천세와 동시 납부.",
+        "official_url": "https://www.wetax.go.kr/tcp/loi/J030104M01.do"
+      }
+    },
+    {
+      "id": "payment_statement",
+      "title": "지급명세서 제출(근로·사업·퇴직소득)",
+      "category": "원천세",
+      "rule": "fixed", "month": 3, "day": 10,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": true, "opt_in": null,
+      "official_url": "https://www.nts.go.kr/nts/cm/cntnts/cntntsView.do?cntntsId=7695",
+      "desc": "전년도 근로·퇴직·사업소득 지급명세서 제출. 근로·사업소득 간이지급명세서 매월 제출 제도의 시행 세부는 국세청 공지를 확인하세요.",
+      "checklist": ["직원·용역 지급내역 연간 집계", "간이지급명세서 매월 제출 대상 여부 확인"],
+      "local_tax": null
+    },
+    {
+      "id": "social_insurance_report",
+      "title": "4대보험 보수총액신고",
+      "category": "4대보험",
+      "rule": "fixed", "month": 3, "day": 10,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": true, "opt_in": null,
+      "official_url": "https://www.4insure.or.kr",
+      "desc": "전년도 보수총액 신고(건강·연금·고용·산재). 이를 기준으로 보험료 정산. 매월 4대보험료는 10일 납부.",
+      "checklist": ["직원별 전년도 보수총액 집계", "국민연금·건강보험 EDI 신고"],
+      "local_tax": null
+    },
+    {
+      "id": "resident_tax_biz",
+      "title": "주민세 사업소분 신고·납부",
+      "category": "지방세",
+      "rule": "fixed", "month": 8, "day": 31,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": false, "opt_in": null,
+      "official_url": "https://www.wetax.go.kr/tcp/loi/J030104M01.do",
+      "desc": "매년 7월 1일 기준 사업소를 둔 사업자에게 부과(前 재산분). 납기 8/16~8/31. 사업장 연면적 기준 세액이 추가될 수 있습니다. 소상공인이 자주 놓치는 항목.",
+      "checklist": ["사업장 소재지 관할 시·군·구 확인", "위택스 또는 고지서로 납부"],
+      "local_tax": null
+    },
+    {
+      "id": "resident_tax_employee",
+      "title": "주민세 종업원분 신고·납부",
+      "category": "지방세",
+      "rule": "monthly", "day": 10,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": true, "opt_in": null,
+      "official_url": "https://www.wetax.go.kr/tcp/loi/J030104M01.do",
+      "desc": "최근 1년간 월평균 급여총액이 면세점(월 1억5천만원)을 초과하는 사업소만 대상. 매월 급여지급월의 다음 달 10일까지.",
+      "checklist": ["월 급여총액이 면세점 초과하는지 확인", "해당 시에만 신고"],
+      "local_tax": null
+    },
+    {
+      "id": "property_tax",
+      "title": "재산세 납부",
+      "category": "지방세",
+      "rule": "fixed", "month": 7, "day": 31,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": false, "opt_in": "realty_owner",
+      "official_url": "https://www.wetax.go.kr/tcp/loi/J030104M01.do",
+      "desc": "사업장 건물·토지를 소유한 경우. 건축물·토지분 7월(16~31일)·9월(16~30일). 주택분은 7·9월 분할(연 20만원 이하는 7월 일괄).",
+      "checklist": ["고지서 세액 확인", "9월 2기분 별도 고지 여부 확인"],
+      "local_tax": null,
+      "second_installment": { "month": 9, "day": 30, "note": "2기분(토지·주택 후반부)" }
+    },
+    {
+      "id": "license_tax",
+      "title": "등록면허세(면허분) 납부",
+      "category": "지방세",
+      "rule": "fixed", "month": 1, "day": 31,
+      "types": ["general", "corp", "simple", "freelancer", "tax_free"],
+      "employee_only": false, "opt_in": "licensed_biz",
+      "official_url": "https://www.wetax.go.kr/tcp/loi/J030104M01.do",
+      "desc": "각종 인허가·면허를 보유한 사업자의 면허분 정기 납부(1/16~31). 식품접객업 등 인허가 업종 대상.",
+      "checklist": ["보유 면허·인허가 종류 확인", "고지서로 납부"],
+      "local_tax": null
+    }
+  ],
+  "holidays": {
+    "2026": [
+      "2026-01-01", "2026-02-16", "2026-02-17", "2026-02-18", "2026-03-02",
+      "2026-05-05", "2026-05-25", "2026-06-06", "2026-08-15", "2026-08-17",
+      "2026-09-24", "2026-09-25", "2026-09-26", "2026-09-28",
+      "2026-10-03", "2026-10-05", "2026-10-09", "2026-12-25"
+    ],
+    "2027": [
+      "2027-01-01", "2027-02-06", "2027-02-07", "2027-02-08", "2027-02-09",
+      "2027-03-01", "2027-05-05", "2027-05-13", "2027-06-06", "2027-08-15",
+      "2027-09-14", "2027-09-15", "2027-09-16", "2027-10-03", "2027-10-09",
+      "2027-12-25"
+    ]
+  },
+  "holidays_note": "2027 공휴일(설·추석)은 잠정치이며 원격 갱신으로 보정. 임시공휴일 신규 지정도 원격 갱신으로 반영. 신고기한이 토·일·공휴일이면 다음 영업일로 순연."
+}
